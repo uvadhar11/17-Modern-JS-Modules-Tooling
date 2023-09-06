@@ -27,4 +27,4 @@ export default addToCart; // we basically return the value and can name the valu
 // blocking code example
 // const res = await fetch('https://jsonplaceholder.typicode.com/users'); // api request
 // await res.json(); // converting to json
-// console.log('finish fetching'); // only after this top level await is ciompleted, this console prints, and then the importing module will run.
+// console.log('finish fetching'); // only after this top level await is completed, this console prints, and then the importing module will run.

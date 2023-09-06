@@ -5,7 +5,7 @@
 // development => build process (PART 1: bundling modules into one big file-compresses the code there so older browsers are good and reduces unsused files. PART 2: transpiling/polyfilling - converting JS features to older versions so older browsers can understand our code and this uses BABEL) -> javascript bundle (after these 2 steps, we are ready to deploy this bundle for production).
 // we don't do this automatically, we use tools like webpack (popular, hard to set up since lots manual config stuff) and parcel (0 config needed, Jonas uses this one all the time) -> take raw code and transform it into js bundle.
 // these dev tools are available on npm - download and manage tools with npm as well. Some are things like babel, parcel, live server, etc.
-
+/*
 // AN OVERVIEW OF MODULES IN JAVASCRIPT
 // module: reusable piece of code with implementation details - its a seperate file (similar to function) - has import and exports (exporting stuff out of a module is called a PUBLIC API like with classes. Public API consumed by importing values from other modules and stuff)
 // dependencies: the code we import/packages and stuff (since we need that code for our code in the module to work)
@@ -87,3 +87,55 @@ console.log(lastPost2);
 // so top level await will block the module as well.
 
 // THE MODULE PATTERN
+// functions give us private data by default and allow us to return values that become part of the public api.
+// we use an iffe - immediately invoked function expression - to create a new scope that is hidden from the outside scope. This is called the module pattern.
+// storing the return value of the ifi into a shopping cart variable
+const ShoppingCart2 = (function () {
+  const cart = [];
+  const shippingCost = 10;
+  const totalPrice = 237;
+  const totalQuantity = 23;
+
+  const addToCart = function (product, quantity) {
+    cart.push(product, quantity);
+    console.log(`${quantity} ${product} added to cart`);
+  };
+
+  const orderStock = function (product, quantity) {
+    cart.push(product, quantity);
+    console.log(`${quantity} ${product} ordered from supplier`);
+  };
+
+  // we can return some of this stuff in order to use it (this will be part of the public api) - we could have defined some of the things like the vars directly in the object but its cleaner and better this way.
+  return {
+    addToCart,
+    cart,
+    totalPrice,
+    totalQuantity,
+  };
+})(); // goal is to create a new scope not reuse code
+
+ShoppingCart2.addToCart('apple', 4);
+ShoppingCart2.addToCart('pizza', 2);
+console.log(ShoppingCart2);
+console.log(ShoppingCart2.cart); // public api so its now in the global scope after we returned it.
+console.log(ShoppingCart2.shippingCost); // the var we wanted to be private is private and not accessible in the global scope (like from the console)
+// closures allow a funtion to have access to all the variables that were present at its birthplace which allows all of this stuff to work like this. This function never loses connection to addToCart function since that is its BIRTHPLACE which is why the add to cart function can STILL access the the cart variable (the array and it can push stuff into that array) even though that is not defined in the add to cart function itself!
+// we can also use the shipping cost variable in the function
+// the mdoule pattern works well but has limitations which is why native modules were added to the language. Limitations include things like not being able to bundle code together and having to be careful about linking the files together in the right order.
+
+
+// COMMONJS MODULES
+// there are lots of other JS module types like AMD modules and CommonJS modules before the JS added their native implementation. 
+// CommonJS has always been used in node.js and now they are moving to ES6 modules sometimes now. 
+// all the modules from node.js lots of times use common js system. npm was used for node which used common js modules. so we have this around a lot. 
+// one file is one module with common js like with es6 modules
+export.addToCart = function (product, quantity) {
+  cart.push({product, quantity})
+  console.log(`${quantity} ${product} added to cart (shipping cost is ${shippingCost})`);
+} // this won't work here in the browser but it will work with node js because export is a global object in node js so it works in node js. NOT HERE SINCE export is NOT DEFINED.
+
+// Importing with commonJS
+const {addToCart} = require("./shoppingCart.js") // require is a function defined in node.js (not defined here)
+// ES6 modules will replace these module systems but it will take a long time to get there.
+*/
