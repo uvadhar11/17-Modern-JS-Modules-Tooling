@@ -139,3 +139,14 @@ export.addToCart = function (product, quantity) {
 const {addToCart} = require("./shoppingCart.js") // require is a function defined in node.js (not defined here)
 // ES6 modules will replace these module systems but it will take a long time to get there.
 */
+
+// A BRIEF INTRODUCTION TO THE COMMAND LINE
+// always in a project folder when we open the vs code thing
+// ls/dir (dir on windows and mac is ls) - list all the files in the current folder
+// cd - change directory (up and down the file tree). To go up use .. with cd so like cd.. and to go to a specific folder use cd foldername (you can start writing it then click tab which will autofill it so we don't have to type the entire name out)
+// cd ../.. will move up 2 levels
+// clear will clear the console
+// to go into files/folders with names seperated by spaces, then you should use quotes around the name like cd "my folder"
+// use mkdir then the name of the folder to create a new folder in the current folder you are in
+// New-Item -name index.html -> this creates a new file called index.html in the current folder you are in so the format for this is: New-Item -name filename.extension
+// to install live-server to open these files, first you need to install it with this: npm install -g live-server (the -g means global so it will be installed globally on your computer and not just in the current folder you are in)
