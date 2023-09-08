@@ -150,3 +150,8 @@ const {addToCart} = require("./shoppingCart.js") // require is a function define
 // use mkdir then the name of the folder to create a new folder in the current folder you are in
 // New-Item -name index.html -> this creates a new file called index.html in the current folder you are in so the format for this is: New-Item -name filename.extension
 // to install live-server to open these files, first you need to install it with this: npm install -g live-server (the -g means global so it will be installed globally on your computer and not just in the current folder you are in)
+// del filename.extension will delete the file
+// mv filename.extension [new location like ../ moves to the parent directory] will move the file to the new location specified.
+// rmdir foldername will remove the folder/directory.
+
+// INTRODUCTION TO NPM
