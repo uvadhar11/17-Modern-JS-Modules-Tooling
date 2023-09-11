@@ -155,3 +155,35 @@ const {addToCart} = require("./shoppingCart.js") // require is a function define
 // rmdir foldername will remove the folder/directory.
 
 // INTRODUCTION TO NPM
+// used to put libraries directly into html like with the script tag which would make a global variable (included the script.js) but this isn't good because its not manageable for big teams, messy, and have to manually update the script tag whenever the library is updated. No single repo
+// need a more modern way to manage the dependencies so npm.
+// npm -v => to check if npm if npm installed and version exists
+// npm init => made a package.json for our project and this helps install dependencies.
+// npm install (or npm i) PACKAGE_NAME to install a package - this will create a node_modules folder with the package in it and the package.json file will be updated with the package and its version.
+// node modules can have the source files of the library and other stuff needed.
+// leaflet uses common js module system so cant directly import it into our code - can only do it if we use a module bundler (need module bundlers for common js modules).
+// lodash is a library that has lots of useful functions that we can use in our code. If we want to make the lodash library imported in our code and installed, then we need to install a specific type which is npm install lodash-es (the es means es6 modules) and this will install the es6 version of lodash. This will also update the package.json file with the lodash-es package and its version.
+// a function called clone deep uses export default so we can give it any name we want and it basically is used to clone objects.
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js'; // this is how we import the lodash-es library into our code. We can use the cloneDeep function from lodash-es in our code now.
+
+// clone deep makes it easier to clone a nested object
+const state = {
+  cart: [
+    { product: 'bread', quantity: 5 },
+    { product: 'pizza', quantity: 5 },
+  ],
+  user: { loggedIn: true },
+};
+const stateClone = Object.assign({}, state); // this is how we clone an object in js. We can also use the spread operator to do this as well. Put in an empty object and then the object we want to clone/copy.
+const stateDeepClone = cloneDeep(state); // lodash makes it easier to clone an object without needing the memory references being the same
+state.user.loggedIn = false;
+console.log(stateClone); // for here, since the memory references are the same for state and stateClone, if you change one property on one, it will change it for the other one as well.
+console.log(stateDeepClone); // this will change only the property of the object you want it to and not the other one.
+
+// NEVER INCLUDE NODE MODULES FOLDER IN THE PROJECT REPO ON GITHUB - ALL THAT STUFF IS IN THE PACKAGE.JSON FILE SO YOU CAN JUST INSTALL IT WITH THAT FILE SINCE ALL THESE FILES ARE IN NPM. SO to install the dependencies, you just need to run npm install and it will install all the dependencies in the package.json file (if there are any missing)
+// importing the packages like we did with import and then the big file is not practical, so we are going to fix that with a module bundler like parcel.
+
+// BUNDLING WITH PARCEL AND NPM SCRIPTS
+// webpack is the most popular bundler, especially in the react world but its pretty complex.
+// parcel is a zero config bundler - no config needed and it just works. It also has a dev server built in so we can use that to run our code.
+// npm i parcel --save-dev => install parcel as a dev dependency (not needed for production, parcel is only a tool needed for development) so it doesn't go under dependencies in the package.json file but under devDependencies.
