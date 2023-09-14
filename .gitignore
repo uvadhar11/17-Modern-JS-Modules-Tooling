@@ -1,0 +1,4 @@
+# put the names of the files/directories you want to ignore here. Just make the file in here.
+node_modules
+dist
+.parcel-cache

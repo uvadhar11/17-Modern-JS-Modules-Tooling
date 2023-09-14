@@ -48,7 +48,7 @@ console.log(ShoppingCart.totalPrice);
 console.log(add);
 add('price', 2);
 // DO NOT mix default and named exports
-
+*/
 // modules are a live connection.
 import add, { cart } from './shoppingCart.js'; // example of mixing default and named exports. DONT do this.
 add('pizza', 2);
@@ -57,7 +57,7 @@ add('apples', 4);
 // we are adding values to the empty cart variable (empty when we exported it) and after we added stuff to it, it isn't empty anymore (LIVE CONNECTION)
 console.log(cart); // same object behind the scenes but a live connection since point to the same place in memory.
 // this is the foundation of how we make a modern js codebase.
-
+/*
 // Top-level await (ES2022)
 // we can use the await keyword outside of an async function (we call this top-level await since its at the top level - not inside something like a function) - we can ONLY use this in a module NOT a normal script (need the type="module" in the html)
 console.log('Start fetching');
@@ -164,7 +164,10 @@ const {addToCart} = require("./shoppingCart.js") // require is a function define
 // leaflet uses common js module system so cant directly import it into our code - can only do it if we use a module bundler (need module bundlers for common js modules).
 // lodash is a library that has lots of useful functions that we can use in our code. If we want to make the lodash library imported in our code and installed, then we need to install a specific type which is npm install lodash-es (the es means es6 modules) and this will install the es6 version of lodash. This will also update the package.json file with the lodash-es package and its version.
 // a function called clone deep uses export default so we can give it any name we want and it basically is used to clone objects.
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js'; // this is how we import the lodash-es library into our code. We can use the cloneDeep function from lodash-es in our code now.
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js'; // this is how we import the lodash-es library into our code. We can use the cloneDeep function from lodash-es in our code now.
+
+// with parcel, there is no need to include the whole url like above, so we can just type the name of the module like this:
+import cloneDeep from 'lodash-es'; // this will work with any type of file like scripts, images, even commonJS modules, etc. Parcel will automatically install the package for us and then import it into our code. This is called the npm package auto install feature.
 
 // clone deep makes it easier to clone a nested object
 const state = {
@@ -187,3 +190,27 @@ console.log(stateDeepClone); // this will change only the property of the object
 // webpack is the most popular bundler, especially in the react world but its pretty complex.
 // parcel is a zero config bundler - no config needed and it just works. It also has a dev server built in so we can use that to run our code.
 // npm i parcel --save-dev => install parcel as a dev dependency (not needed for production, parcel is only a tool needed for development) so it doesn't go under dependencies in the package.json file but under devDependencies.
+// parcel was installed locally so can't do parcel index.html -> need global installation
+// can use npx or npm scripts to run parcel
+// npx is a tool that allows us to run packages that are installed locally in the project (like parcel) without installing them globally. So we can use npx parcel index.html to run the parcel bundler.
+// COMMAND: npx parcel index.html ^^^
+// we pass the entry point into parcel (index.html) here because thats where we include the script.js which is the file we want to bundle up. The modules we have are clone deep, shopping cart, and script.js. Parcel will bundle all of these modules into one big file and then we can use that file in the index.html file.
+// this is like live server put on port 1234 and it will open the index.html file in the browser and it will also watch for changes in the code and then update the browser automatically. (it rebuilds the bundle and reshreses the browser automatically everytime you make a change)
+// to fix can do sudo npm i parcel -g (sudo is for mac and linux) and then parcel index.html will work. IF the other stuff doesn't work
+// could uninstall parcel first with npm uninstall parcel and then install again.
+// parcel creates a script so we are no longer using a module but we are now using a script here. That is important because older browsers don't support modules but they do support scripts.
+// as you can see we have a new folder created called dist that has all the modules and dependencies and everything inside of it and a new index.html is created and without type module in the script tag. This is the file we should use in production.
+// IMPORTANT: in the index.html file we use it is fine if we keep the script js file as type module since the new index.html file thgat parcel will make will be weithout the type module in the script tag so leave it since using parcel v2 since otherwise it will error (the production build will be fine since the new index.html in dist folder will be without the type module in the script tag)
+// TROUBLESHOOTING IMPORTANT: you get an error like build failed. expected content key ___ to exist then go into file explorer and delete parcel-cache and the dist folder and then run parcel command again and it should work. I got an error previously because I deleted the type="module" in the script tag in index.html
+
+// we can do hot pocket replacement in parcel - only parcel understands this so it won't work in the production build. This is a dev tool. This means that whenever we change something here, the page won't be reloaded but the changes will be applied automatically. This is called hot module replacement.
+if (module.hot) {
+  module.hot.accept();
+}
+// for exmaple this is shown with the cart variable being printed to the console. The object's value still persists even after we change the code and it can be updated (everytime we rebuild, the object is saved and added to). This is because of hot module replacement.
+
+// npm scripts
+// there is another way to run locally installed packages in the command line and help us automate repetitive tasks like running parcel. This is called npm scripts. SEE package.json to add a word corresponding with a command/script. Like we had start correspond with running npx parcel index.html so we do this command: npm run [NAME OF THE SCRIPT, in our case its start] to run the npx parcel index.html command.
+// NOTE: deleted the main field in the package.json file since we don't need it since we aren't making this a library. Deleted that field and replaced it with this: "targets": { "main": false},
+// after building the code, parcel compresses it
+// we can also install packages globally: npm install parcel -g (-g means globally) and this means you can use this in any directory on your computer. The problem with this is you can't have multiple versions on your computer and you can't have different versions for different projects. So its better to install locally.
