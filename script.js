@@ -214,3 +214,4 @@ if (module.hot) {
 // NOTE: deleted the main field in the package.json file since we don't need it since we aren't making this a library. Deleted that field and replaced it with this: "targets": { "main": false},
 // after building the code, parcel compresses it
 // we can also install packages globally: npm install parcel -g (-g means globally) and this means you can use this in any directory on your computer. The problem with this is you can't have multiple versions on your computer and you can't have different versions for different projects. So its better to install locally.
+// GIT NOTE: see the git ignore file added. When you do git add * it will add all the modified/new files and ignore all the git ignore files.
