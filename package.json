@@ -12,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.32.2",
     "leaflet": "^1.9.4",
     "lodash-es": "^4.17.21"
-  }
+  },
+  "browserslist": "last 2 versions, > 0.5% and ie >= 11"
 }

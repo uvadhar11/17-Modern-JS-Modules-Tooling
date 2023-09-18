@@ -1,3 +1,6 @@
+import core from 'core-js';
+// import 'regenerator-runtime/runtime';
+
 // AN OVERVIEW OF MODERN JAVASCRIPT DEVELOPMENT
 // open source/3rd part modules (packages) are available through npm (node packet manager)
 // in our code we have things like modules and then 3rd party packages that we use.
@@ -215,3 +218,23 @@ if (module.hot) {
 // after building the code, parcel compresses it
 // we can also install packages globally: npm install parcel -g (-g means globally) and this means you can use this in any directory on your computer. The problem with this is you can't have multiple versions on your computer and you can't have different versions for different projects. So its better to install locally.
 // GIT NOTE: see the git ignore file added. When you do git add * it will add all the modified/new files and ignore all the git ignore files.
+
+// CONFIGURING BABEL AND POLYFILLING
+// this is for transpiling code back to older versions like ES5 to take into account the people on older browsers. Parcel USED to do this automatically for us but we can configure it if we want to with babel.
+// babel is a transpiler that converts modern js code to older js code so older browsers can understand it. Parcel USED TO USE babel under the hood to do this.
+// now, in parcel version 2, the transpiler they use is faster than babel. SO we have to manually enable this.
+// a plugin is what we want to transpile back
+// a preset is a set of plugins
+// OLD: use babel/present-env
+// STEPS:
+// npm install core-js to allow us to use polyfills
+// import core from 'core-js';
+// add "browserslist": "last 2 versions, > 0.5% and ie >= 11", to the package.json file -> you can change this based on what you need
+class Person {
+  greeting = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+const jonas = new Person('Jonas');
