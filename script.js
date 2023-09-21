@@ -250,3 +250,15 @@ Promise.resolve('Test').then(x => console.log(x)); // this is a new method that 
 // polyfilling async functions
 import 'regenerator-runtime/runtime.js';
 // see the dist files under c17421f9.js for the transpiling/polyfilling stuff
+
+// REVIEW: WRITING CLEAN AND MODERN JAVASCRIPT
+// readable code
+// General: DRY principle (Refactoring), encapsulation (don't pollute global namespace), don't use car, use strict type checks (===, !==).
+// Functions: generally do only one thing per function, don't use more than 3 function parameters, use default params when possible, generally return same data type as recieved, arrow functions when makes code more readable.
+// OOP: use es6 classes, encapsulate data and don't mutate it from outside class (use public api if you want to change the data from outside the class), method chaining when applicable since its really helpful, DON'T USE arrow functions as methods in regular objects (when writing methods in them) because you won't get access to the this keyword.
+// AVOID NESTED CODE - like lots of if statements blocks, etc. -> guard clauses (early return), ternary instead of if statement can help, multiple if instead of if/else-if can help sometimes, avoid for loops (for and for of) and u can use array methods instead like map, filter, reduce, AND avoid callback based asnyc APIs (use promises instead and consume with async/await).
+// ASYNC CODE: consume promises with async/await (not with callbacks and stuff), use promise.all to run promises in parallel if not needed for the next step (like one promise doesn't need to be in before the next promise) to make the application a bit faster, handle errors and promise rejections.
+
+// LET'S FIX SOME BAD CODE PART 1
+// cleaning up the code in clean.js
+// we can use live server for seeing this code since we don't need our code to be bundled up for this (don't need parcel).
