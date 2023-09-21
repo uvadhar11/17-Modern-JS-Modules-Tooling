@@ -5,16 +5,21 @@
   "targets": {
     "main": false
   },
+  "source": "index.html",
   "scripts": {
-    "start": "npx parcel index.html",
-    "build": "npx parcel build index.html"
+    "start": "parcel",
+    "build": "parcel build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "core-js": "^3.32.2",
     "leaflet": "^1.9.4",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "regenerator-runtime": "^0.14.0"
   },
-  "browserslist": "last 2 versions, > 0.5% and ie >= 11"
+  "browserslist": "last 2 versions, > 0.5% and ie >= 11",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
 }

@@ -1,4 +1,4 @@
-import core from 'core-js';
+import 'core-js';
 // import 'regenerator-runtime/runtime';
 
 // AN OVERVIEW OF MODERN JAVASCRIPT DEVELOPMENT
@@ -238,3 +238,15 @@ class Person {
   }
 }
 const jonas = new Person('Jonas');
+
+console.log('Jonas' ?? null); // this is a new operator that is used to check if the value is null or undefined and if it is, then it will return the value after the ?? operator. If the value is not null or undefined, then it will return the value before the ?? operator. this is called the nullish coalescing operator.
+
+console.log(cart.find(el => el.quantity >= 2)); // this is a new method that is used to find the first element in an array that satisfies the condition in the callback function. If it doesn't find anything, then it will return undefined. This is called the find method.
+Promise.resolve('Test').then(x => console.log(x)); // this is a new method that is used to create a promise that is resolved with the value that is passed in. This is called the promise.resolve method.
+// Babel can only transpile ES6 syntax (transpiling is like writing things in a different way like classes to functions, const to var) BUT the same isn't true to REAL new features like find and promises. So, these can't be transpiled (they are not syntax and we can only transpile syntax) SO we need to polyfill them.
+// polyfilling: adding a piece of code to add a feature that the new browser doesn't support (like adding new functionality with prototype so the name is the same like with the YT video with the at method -> https://www.youtube.com/watch?v=YH6ui_dG7Ow&embeds_referring_euri=https%3A%2F%2Fwww.bing.com%2F&embeds_referring_origin=https%3A%2F%2Fwww.bing.com&source_ve_path=Mjg2NjY&feature=emb_logo). So we can use core-js to polyfill the new features.
+// import 'core-js/stable'; -> only need this package for the polyfilling, commented out because I imported the entire module at the top of the file.
+// Polyfilling will polyfill everything even if we are not using it in our code. So, we can pick only the features we need to polyfill which will help reduce the bunlde size. Like import "core-js/stable/array/find" -> this will only polyfill the find method and not everything else. (but yeah we should be fine importing all of it)
+// polyfilling async functions
+import 'regenerator-runtime/runtime.js';
+// see the dist files under c17421f9.js for the transpiling/polyfilling stuff
