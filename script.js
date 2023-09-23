@@ -262,3 +262,21 @@ import 'regenerator-runtime/runtime.js';
 // LET'S FIX SOME BAD CODE PART 1
 // cleaning up the code in clean.js
 // we can use live server for seeing this code since we don't need our code to be bundled up for this (don't need parcel).
+
+// DECLARATIVE AND FUNCTIONAL JS PRINCIPLES
+// 2 paradigms: imperative and declarative
+// imperative: programmer explains every step of how to do something (like telling every step to take to achieve a result). Like steps in a for loop to do something.
+// declarative: programmer tells what to do and not how to do it. The HOW is abstracted away. Like telling the cake to make and the person has to make it by themselves. Doing the for loop in a declarative way is using the array methods like map, filter, reduce, etc. instead of the for loop. Like with map to tell the computer to loop through the array and for example double the element each time.
+// makes a sub paradigm called functional programming.
+// functional programming: declarative, writing software by combining many pure functions and avoiding side effects and mutating data.
+// side effect: a modification/mutation of any data outside a function. Like mutating a variable outside of the function's scope (like in the scope above such as in the global scope). Data doesn't just mean variables but changing things in the DOM or logging to the console is also a side effect.
+// pure function: function without side effects - it doesn't depend on any external variables. Given the same inputs, it always gives the same outputs.
+// immutability: state/data is never modified (is immutable). Instead the state is copied, the copy (NOT original) is mutated and then returned. Makes easy to keep track of data flow throughout application.
+// many popular libraries like react and redux are built around this. React uses state being immutable. We can mix imperative and declarative programming together. We can use functional programming in our codebase to make it more readable and maintainable.
+// Some functional programming techniques: avoid data mutations as much as possible, use built-in methods not producing side effects, data transformations with map/filter/reduce -> these are also present in all functional programming languages, try to avoid side effects with functions you write [WON'T be able to ever completely avoid side effects but we can minimize them], functions should be small and do only one thing, functions should be pure (no side effects), functions should return something.
+// THESE ARE SUGGESTIONS, NOT ALWAYS FEASIBLE ^^^^
+// Declarative: functional only part of this.
+// Declarative syntax: use array/object destructuring, use spread operator, ternary operator, template literals whenever possible. Tell code what to do and not necessarily how to do it.
+
+// LET'S FIX SOME BAD CODE PART 2
+// fixing the code in clean2.js but with the functional/declarative programming principles we just learned about in the last video.
